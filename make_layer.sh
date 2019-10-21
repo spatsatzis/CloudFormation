@@ -1,24 +1,24 @@
 #!/bin/bash -xe
 
-cd /home/ec2-user/
-mkdir python
+cd {{WDIR}}
+mkdir {{Structure}}
 
-if [[ Python36 == *"Node"* ]]; then
+if [[ {{Runtime}} == *"Node"* ]]; then
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 . ~/.nvm/nvm.sh
 nvm install node
 
-npm install --prefix /home/ec2-user/python/ pyOpenSSL
+npm install --prefix {{WDIR}}{{Structure}}/ {{Modules}}
 
-elif [[ Python36 == "Python36" ]]; then
+elif [[ {{Runtime}} == "Python36" ]]; then
 
 sudo yum install -y python36
 
-pip-3.6 install pyOpenSSL -t /home/ec2-user/python/
+pip-3.6 install {{Modules}} -t {{WDIR}}{{Structure}}/
 
-elif [[ Python36 == "Python37" ]]; then
+elif [[ {{Runtime}} == "Python37" ]]; then
 
 sudo yum install -y gcc openssl-devel bzip2-devel libffi-devel xz-devel ncurses-devel gdbm-devel sqlite-devel tk-devel uuid-devel readline-devel zlib-devel
 
@@ -30,12 +30,12 @@ cd Python-3.7.4
 ./configure --enable-optimizations
 sudo make altinstall
 
-pip3.7 install pyOpenSSL -t /home/ec2-user/python/
+pip3.7 install {{Modules}} -t {{WDIR}}{{Structure}}/
 
 else
 
-pip-2.7 install pyOpenSSL -t /home/ec2-user/python/
+pip-2.7 install {{Modules}} -t {{WDIR}}{{Structure}}/
 
 fi
 
-zip -r layer.zip /home/ec2-user/python/
+zip -r {{ZIP}} {{WDIR}}{{Structure}}/
