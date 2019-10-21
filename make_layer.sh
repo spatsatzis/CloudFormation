@@ -38,4 +38,5 @@ pip-2.7 install {{Modules}} -t {{WDIR}}{{Structure}}/
 
 fi
 
-zip -r {{ZIP}} {{WDIR}}{{Structure}}/
+cd {{WDIR}}
+zip -r {{ZIP}} {{Structure}}/
